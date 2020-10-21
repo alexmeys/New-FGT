@@ -1,7 +1,7 @@
 # New Fortigate Configuration tool
 
 This is an easy to read / adjust Fortigate configuration script made in Powershell.
-<br/>Place the files somewhere on your desktop in a folder (e.g.: \Documents\FGT\*)
+<br/>Place the files somewhere on your desktop in a folder (e.g.: \Documents\FGT\ *)
 <br/>
 <br/>Run .\FGT_Start.ps1 
 <br/>
