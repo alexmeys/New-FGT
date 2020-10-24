@@ -1,4 +1,5 @@
 ﻿#region Get basic information
+ 
 function Set-FGTInfo
 {
     param(
