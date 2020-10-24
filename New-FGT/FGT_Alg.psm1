@@ -84,7 +84,7 @@ function Set-FGTAlg
     $SSH1.WriteLine("end")
     Start-Sleep -Milliseconds 70
     
-    Write-Host "All Done, ALG is now disabled on your firewall"
+    Write-Host "All Done, ALG is now disabled on your firewall. Reboot needed."
     Start-Sleep -Seconds 3
 }
 #endregion
