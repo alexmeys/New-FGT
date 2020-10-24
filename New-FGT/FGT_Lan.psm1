@@ -1,4 +1,5 @@
 ﻿#region Data for LAN
+ 
 function Set-FGTLan
 {
     param(
