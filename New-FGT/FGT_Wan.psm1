@@ -1,4 +1,5 @@
 ﻿#region Data for WAN 
+ 
 function Set-FGTWan
 {
     param(
