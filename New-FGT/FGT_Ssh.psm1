@@ -1,4 +1,5 @@
 ﻿#region Lets get started
+ 
 function New-FGTInit
 {
     Clear-Host
