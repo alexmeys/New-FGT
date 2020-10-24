@@ -5,7 +5,8 @@ This is an easy to read / adjust Fortigate configuration script made in Powershe
 <br/>
 <br/>Run .\FGT_Start.ps1 
 In case you get an error that scripts cannot run on your system <br />
-Type: Set-ExecutionPolicy -RemoteSigned You can set it back to restricted later, if you want too.
+Type: Set-ExecutionPolicy -RemoteSigned 
+<br/>You can set it back to restricted later, if you want too.
 <br/><br/>
 It first checks if Posh-SSH is installed, if not, it will try to install it for you. 
 Due too this reason, the first connection takes a little time. <br/>Once it is installed on your pc, the next connection will be fast.  
