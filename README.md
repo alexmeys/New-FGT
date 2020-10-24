@@ -1,17 +1,22 @@
 # New Fortigate Configuration tool
 
 This is an easy to read / adjust Fortigate configuration script made in Powershell.
-<br/>Place the files somewhere on your desktop in a folder (e.g.: \Documents\FGT\ *)
+<br/>Place the files wherever you want (usb, local pc, other partition,...).
 <br/>
 <br/>Run .\FGT_Start.ps1 
+In case you get an error that scripts cannot run on your system <br />
+Type: Set-ExecutionPolicy -RemoteSigned You can set it back to restricted later, if you want too.
 <br/>
 It first checks if Posh-SSH is installed, if not, it will try to install it for you. 
 Due too this reason, the first connection takes a little time. <br/>Once it is installed on your pc, the next connection will be fast.  
 <br/>
-Follow the steps 1-7 for the best experience (it will remember some stuff like wan interface you have chosen before etc)<br/>
-Or pick indiviual options from the menu shown, for a specific configuration. <br/>
+Follow the steps 1-7 for the best experience.<br/>
+Or pick indiviual options from the menu shown, for a specific configuration. <br/></br>
+In case you are wondering, when applying the policy's, it will only add policy's not delete existing policy's.
+However in case they have the same ID (assigned mine default 1-10) It will overwrite them. 
+In that case you can edit the policy numbers to some range behind your current policy ID's.
 <br/>
-It has been tested with Fortigate 5.2.x and 6.2.x, it seems to work on both versions, however use at your own risk 
+It has been tested with Fortigate 5.2.x and 6.2.x, it seems to work on both versions, however use at your own risk. 
 <br/> Always make a backup just in case!<br/>
 <br/>
 Some pictures:
