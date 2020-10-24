@@ -2,6 +2,7 @@
 #Check if Posh-SSH is installed if not this will install it
 #Gives the user 15 seconds to read the messages before clearing the screen.
 #In case of error script will exit with an error 1.
+
 function Test-Dependency
 {
     Write-Host "`n*** Dependency Checks ***`n" -ForegroundColor Green
