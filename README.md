@@ -1,4 +1,4 @@
-# New Fortigate Configuration tool
+# PowerShell Fortigate Configuration tool
 
 This is an easy to read / adjust Fortigate configuration script made in Powershell.
 <br/>Place the files wherever you want (usb, local pc, other partition,...).
