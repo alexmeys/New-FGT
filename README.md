@@ -15,8 +15,8 @@ Or pick indiviual options from the menu shown, for a specific configuration. <br
 In case you are wondering, when applying the policy's, it will only add policy's not delete existing policy's.
 However in case they have the same ID (default 1-10) It will overwrite them. 
 In that case you can edit the policy numbers to some range behind your current policy ID's.
-<br/>
-It has been tested with Fortigate 5.2.x and 6.2.x, it seems to work on both versions, however use at your own risk. 
+<br/><br/>
+It has been tested with Fortigate 5.2.x and 6.2.x, it seems to work on both versions, however use at your own risk. <br/>
 <br/> Always make a backup just in case!<br/>
 <br/>
 Some pictures:
@@ -24,6 +24,8 @@ Some pictures:
 ![Alt text](/Pictures/FGT_Connect.png?raw=true "Connecting_FGT_Unit") <br/>
 ![Alt text](/Pictures/FGT_Menu_Options.png?raw=true "FGT_Menu") <br/>
 ![Alt text](/Pictures/FGT_Lan.png?raw=true "FGT_Lan_MOD") <br/>
+![Alt text](/Pictures/FGT_Lan_NoABCNet.png?raw=true "FGT_Lan_NoABCNet") <br/>
 ![Alt text](/Pictures/FGT_Policy.png?raw=true "FGT_Pol_MOD") <br/>
+![Alt text](/Pictures/FGT_Policy_NoABCNet.png?raw=true "FGT_Pol_NoABCNet") <br/>
 ![Alt text](/Pictures/FGT_Gui_Int.png?raw=true "FGT_GUI_interface") <br/>
 ![Alt text](/Pictures/FGT_Gui_Policy.png?raw=true "FGT_GUI_Policy") <br/>
