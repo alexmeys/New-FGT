@@ -13,7 +13,7 @@ Due too this reason, the first connection takes a little time. <br/>Once it is i
 Follow the steps 1-7 for the best experience.<br/>
 Or pick indiviual options from the menu shown, for a specific configuration. <br/></br>
 In case you are wondering, when applying the policy's, it will only add policy's not delete existing policy's.
-However in case they have the same ID (assigned mine default 1-10) It will overwrite them. 
+However in case they have the same ID (default 1-10) It will overwrite them. 
 In that case you can edit the policy numbers to some range behind your current policy ID's.
 <br/>
 It has been tested with Fortigate 5.2.x and 6.2.x, it seems to work on both versions, however use at your own risk. 
