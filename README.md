@@ -26,11 +26,4 @@ It has been tested with Fortigate 5.2.x and 6.2.x, it seems to work on both vers
 <br/>
 Some pictures:
 <br/><br/>
-![alt text](/Pictures/FGT_Connect.png?raw=true "Connecting_FGT_Unit") <br/>
-![alt text](/Pictures/FGT_Menu_Options.png?raw=true "FGT_Menu") <br/>
-![alt text](/Pictures/FGT_Lan.png?raw=true "FGT_Lan_MOD") <br/>
-![alt text](/Pictures/FGT_Lan_NoABCNet.png?raw=true "FGT_Lan_NoABCNet") <br/>
-![alt text](/Pictures/FGT_Policy.png?raw=true "FGT_Pol_MOD") <br/>
-![alt text](/Pictures/FGT_Policy_NoABCNet.png?raw=true "FGT_Pol_NoABCNet") <br/>
-![alt text](/Pictures/FGT_Gui_Int.png?raw=true "FGT_GUI_interface") <br/>
-![alt text](/Pictures/FGT_Gui_Policy.png?raw=true "FGT_GUI_Policy") <br/>
+
