@@ -3,7 +3,11 @@
 This is an easy to read / adjust Fortigate configuration script made in Powershell.
 <br/>Place the files wherever you want (usb, local pc, other partition,...).
 <br/>
-<br/>Run .\FGT_Start.ps1 
+<br/>Run: <br/>
+
+<pre> .\FGT_Start.ps1 </pre> 
+
+<br/>
 In case you get an error that scripts cannot run on your system <br />
 Type: Set-ExecutionPolicy -RemoteSigned 
 <br/>You can set it back to restricted later, if you want too.
