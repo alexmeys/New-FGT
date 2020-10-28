@@ -5,7 +5,7 @@ This is an easy to read / adjust Fortigate configuration script made in Powershe
 <br/>
 <br/>Run: <br/>
 
-<pre> .\FGT_Start.ps1 </pre> 
+<pre> <span>.\FGT_Start.ps1 </span> </pre>
 
 <br/>
 In case you get an error that scripts cannot run on your system <br />
