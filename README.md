@@ -22,8 +22,8 @@ However in case they have the same ID (default 1-10) It will overwrite them.
 In that case you can edit the policy numbers to some range behind your current policy ID's.
 <br/><br/>
 It has been tested with Fortigate 5.2.x and 6.2.x, it seems to work on both versions, however use at your own risk. <br/>
-<br/> Always make a backup just in case!<br/>
-! Bugs found on New FGT ! 
+<br/> Always make a backup just in case...<br/>
+<br/> ! Bugs found on New FGT ! 
 
 Some use a new SSH versions which gives issues, need to resolve that (-force might do it)
 Add WAN interface instead of wan1, some models just use 'WAN' instead of 'WAN1' etc
