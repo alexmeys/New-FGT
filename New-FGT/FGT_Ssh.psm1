@@ -46,6 +46,9 @@ function New-FGTInit
         
         Write-Host "Enter username and password in the popup window."
         Write-Host "Default User is admin and no password needed.`n"
+        
+        # Fix for issue with key exchange
+        Get-SSHTrustedHost | Remove-SSHTrustedHost
 
         $credz = $host.ui.PromptForCredential("Enter FGT Credentials", "Please input your Fortigate Unit credentials.","admin","")
         try
