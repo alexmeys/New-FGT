@@ -113,14 +113,14 @@ function Set-FGTPolicy
         $SSH1.WriteLine("show")
         Start-SLeep -Milliseconds 500
         $readinterfaces = $SSH1.Read()
-        if($readinterfaces -like "*Lan*")
-        {
-            $srcintf = "lan"
-            $SSH1.WriteLine("end")
-        }
-        elseif($readinterfaces -like "*internal*")
+        if($readinterfaces -like "*internal*")
         {
             $srcintf = "internal"
+            $SSH1.WriteLine("end")
+        }
+        elseif($readinterfaces -like "*lan*")
+        {
+            $srcintf = "lan"
             $SSH1.WriteLine("end")
         }
         else
