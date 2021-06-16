@@ -88,8 +88,8 @@ function Set-FGTPolicy
         {
             do
             {
-                $Uplink = Read-Host -Prompt "`nWhat is your outbound interface for network $Internal (wan1,wan2 or dmz)"
-            } while(($uplink -ne 'WAN1') -and ($uplink -ne 'WAN2') -and ($uplink -ne 'DMZ'))
+                $Uplink = Read-Host -Prompt "`nWhat is your outbound interface for network $Internal (wan,wan1,wan2 or dmz)"
+            } while(($uplink -ne 'WAN1') -and ($uplink -ne 'WAN2') -and ($uplink -ne 'DMZ') -and ($uplink -ne 'WAN'))
                
             $uplink = $uplink.ToLower()
         }

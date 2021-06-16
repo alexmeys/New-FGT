@@ -23,12 +23,12 @@ function Set-FGTWan
     Write-Host ""
     Write-Host "*** Get data for WAN ***`n" -ForegroundColor Green
 
-    $whatwan = Read-Host -Prompt "What interface is your WAN interface (Default WAN1; possible WAN2, DMZ)"
+    $whatwan = Read-Host -Prompt "What interface is your WAN interface (Default WAN; possible WAN1, WAN2, DMZ)"
     
 
     if([string]::IsNullOrEmpty($whatwan))
     {
-        $whatwan = "WAN1"
+        $whatwan = "WAN"
     }
 
     $whatwan = $whatwan.ToLower()
@@ -88,9 +88,9 @@ function Set-FGTWan
         }
         default
         {
-            Write-Host "`nYou have chosen an incorrect option, so I'm defaulting to WAN1." -ForegroundColor Red
-            $whatwan = 'WAN1'
-            $WanInt1 = Read-Host -prompt "Do you want DHCP on WAN1 (y/n/exit)"
+            Write-Host "`nYou have chosen an incorrect option, so I'm defaulting to WAN." -ForegroundColor Red
+            $whatwan = 'WAN'
+            $WanInt1 = Read-Host -prompt "Do you want DHCP on WAN (y/n/exit)"
 
             if ($WanInt1 -eq "exit")
             {
@@ -100,15 +100,15 @@ function Set-FGTWan
             }
             elseif (($WanInt1 -eq "y") -and ($WanInt1 -eq "yes"))
             {
-                Write-Host "We will configure DHCP on the WAN1 interface"
+                Write-Host "We will configure DHCP on the WAN interface"
             }
             else
             {
                 Write-Host "You want a static address, let met get some more information."
                 Write-Host "`nKeep in mind to choose a different subnet compared to your Lan!"
-                $WanInt1IP = Read-Host -Prompt "Complete WAN1 IP address (a.b.c.d)"
-                $WanInt1Sub = Read-Host -Prompt "Subnet of the WAN1"
-                $WanInt1GW = Read-Host -Prompt "Default Gateway for Wan1"
+                $WanInt1IP = Read-Host -Prompt "Complete WAN IP address (a.b.c.d)"
+                $WanInt1Sub = Read-Host -Prompt "Subnet of the WAN"
+                $WanInt1GW = Read-Host -Prompt "Default Gateway for Wan"
             }  
         }
 
