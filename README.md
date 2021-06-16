@@ -2,6 +2,7 @@
 
 This is an easy to read / adjust Fortigate configuration script made in Powershell.
 <br/>Place the files wherever you want (usb, local pc, other partition,...).
+<br/>Unblock the file if needed (right click > properties > unblock file)
 <br/>
 <br/>Run: <br/>
 
