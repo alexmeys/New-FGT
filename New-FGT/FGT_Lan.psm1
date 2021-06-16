@@ -193,7 +193,8 @@ function Set-FGTLan
     else
     {
         write-Warning "I could not find the internal interface!"
-        $SSH1.WriteLine("end")
+		$SSH1.WriteLine("end")
+		Start-Sleep -Seconds 5
         return
     }
 

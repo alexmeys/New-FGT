@@ -95,7 +95,7 @@ function Set-FGTPolicy
         }
         else
         {
-            $uplink = $Global:wanInt
+            $uplink = $Global:wanInt.ToLower()
         }
 
         #Starting a SSH Streaming session.
@@ -113,14 +113,14 @@ function Set-FGTPolicy
         $SSH1.WriteLine("show")
         Start-SLeep -Milliseconds 500
         $readinterfaces = $SSH1.Read()
-        if($readinterfaces -like "*internal*")
-        {
-            $srcintf = "internal"
-            $SSH1.WriteLine("end")
-        }
-        elseif($readinterfaces -like "*lan*")
+        if($readinterfaces -like "*lan*")
         {
             $srcintf = "lan"
+            $SSH1.WriteLine("end")
+        }
+        elseif($readinterfaces -like "*internal*")
+        {
+            $srcintf = "internal"
             $SSH1.WriteLine("end")
         }
         else

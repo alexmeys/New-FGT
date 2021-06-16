@@ -88,7 +88,7 @@ function Set-FGTWan
         }
         default
         {
-            Write-Host "`nYou have chosen an incorrect option, so I'm defaulting to WAN." -ForegroundColor Red
+            Write-Host "`nI'm defaulting to WAN."
             $whatwan = 'WAN'
             $WanInt1 = Read-Host -prompt "Do you want DHCP on WAN (y/n/exit)"
 
@@ -98,7 +98,7 @@ function Set-FGTWan
                 Start-Sleep -Seconds 1
                 return
             }
-            elseif (($WanInt1 -eq "y") -and ($WanInt1 -eq "yes"))
+            elseif (($WanInt1 -eq "y") -or ($WanInt1 -eq "yes"))
             {
                 Write-Host "We will configure DHCP on the WAN interface"
             }
@@ -291,15 +291,23 @@ function Set-FGTWan
         default
         {
             Start-Sleep -Milliseconds 70
-            $SSH1.WriteLine("get hardware nic wan1")
+            $SSH1.WriteLine("get hardware nic wan")
             Start-Sleep -Milliseconds 250
             $wanMacOut = $SSH1.Read()
             Start-Sleep -Milliseconds 70
             Write-Warning "Your MAC address information, in case you need it:`n"
             Write-Host $wanMacOut
-            
+            Start-Sleep -Milliseconds 60
+            $SSH1.WriteLine("set allowaccess ping https http fgfm auto-ipsec")
+			Start-Sleep -Milliseconds 70
+			
             if([string]::IsNullOrEmpty($WanInt1IP))
             {
+				
+				$SSH1.WriteLine("end")
+				Write-Host "DHCP active, All Done.`n"
+				Write-Host "Sleeping for some seconds, so you can write the MAC of the WAN"
+				Start-Sleep -Seconds 10
                 break
             }
             else
@@ -326,7 +334,7 @@ function Set-FGTWan
                 Start-Sleep -Milliseconds 60
                 $SSH1.WriteLine("set gateway $WanInt1GW")
                 Start-Sleep -Milliseconds 70
-                $SSH1.WriteLine("set device 'wan1'")
+                $SSH1.WriteLine("set device 'wan'")
                 Start-Sleep -Milliseconds 60
                 $SSH1.WriteLine("end")
                 Start-Sleep -Milliseconds 60
