@@ -61,89 +61,89 @@ function Set-FGTLan
 
         if (($LanInt1Dhcp -eq 'y') -or ($LanInt1Dhcp -eq 'yes'))
         {
-        if($LanInt1Sub -eq '255.255.255.0')
-        {
-            #Getting things ready for dhcp
+			if($LanInt1Sub -eq '255.255.255.0')
+			{
+				#Getting things ready for dhcp
 
-            Write-Host "`n`nOk, We need some more information."
-            Write-Host "Do keep in mind the subnet supplied before ($LanInt1Sub)."
-            Write-Host "`nA DHCP range example could be:" -ForegroundColor Cyan
-            Write-Host "Lan: $LanInt1rng24[1] - $LanInt1rng24[253]" -ForegroundColor Cyan
-            Write-Host "Fortigate unit: $LanInt1gw" -ForegroundColor Cyan
-            Write-Host "`nOr leave some space for some static addresses and start your range a bit further."
-            Write-Host "`nDHCP range Example 2:" -ForegroundColor Cyan
-            Write-Host "Lan: $LanInt1rng24[20] - $LanInt1rng24[253]" -ForegroundColor Cyan
-            Write-Host "Fortigate Unit: $LanInt1gw`n`n" -ForegroundColor Cyan
+				Write-Host "`n`nOk, We need some more information."
+				Write-Host "Do keep in mind the subnet supplied before ($LanInt1Sub)."
+				Write-Host "`nA DHCP range example could be:" -ForegroundColor Cyan
+				Write-Host "Lan: $LanInt1rng24[1] - $LanInt1rng24[253]" -ForegroundColor Cyan
+				Write-Host "Fortigate unit: $LanInt1gw" -ForegroundColor Cyan
+				Write-Host "`nOr leave some space for some static addresses and start your range a bit further."
+				Write-Host "`nDHCP range Example 2:" -ForegroundColor Cyan
+				Write-Host "Lan: $LanInt1rng24[20] - $LanInt1rng24[253]" -ForegroundColor Cyan
+				Write-Host "Fortigate Unit: $LanInt1gw`n`n" -ForegroundColor Cyan
 
-            $siprange = Read-Host -Prompt "Supply a start digit for your range. `nJust type the starting digit, not the whole range ($LanInt1rng24[X])"
-            $eiprange = Read-Host -Prompt "`nSupply an end digit for your range. `nJust type the ending digit, not the whole range ($LanInt1rng24[X])"
-    
-            $newsiprange = $LanInt1rng24
-            $newsiprange += $siprange
+				$siprange = Read-Host -Prompt "Supply a start digit for your range. `nJust type the starting digit, not the whole range ($LanInt1rng24[X])"
+				$eiprange = Read-Host -Prompt "`nSupply an end digit for your range. `nJust type the ending digit, not the whole range ($LanInt1rng24[X])"
+		
+				$newsiprange = $LanInt1rng24
+				$newsiprange += $siprange
 
-            $neweiprange = $LanInt1rng24
-            $neweiprange += $eiprange
+				$neweiprange = $LanInt1rng24
+				$neweiprange += $eiprange
 
-        }
-        elseif($LanInt1Sub -eq '255.255.0.0')
-        {
-            Write-Host "`n`nOk, We need some more information."
-            Write-Host "Do keep in mind the subnet supplied before ($LanInt1Sub)."
-            Write-Host "`nA DHCP range example could be:" -ForegroundColor Cyan
-            Write-Host "Lan: $LanInt1rng16[0].[1] - $LanInt1rng16[255].[253]" -ForegroundColor Cyan
-            Write-Host "Fortigate unit: $LanInt1gw" -ForegroundColor Cyan
-            Write-Host "`nOr leave some space for some static addresses and start your range a bit further."
-            Write-Host "`nDHCP range Example 2:" -ForegroundColor Cyan
-            Write-Host "Lan: $LanInt1rng16[1].[1] - $LanInt1rng16[254].[253]" -ForegroundColor Cyan
-            Write-Host "Fortigate Unit: $LanInt1gw`n`n" -ForegroundColor Cyan
+			}
+			elseif($LanInt1Sub -eq '255.255.0.0')
+			{
+				Write-Host "`n`nOk, We need some more information."
+				Write-Host "Do keep in mind the subnet supplied before ($LanInt1Sub)."
+				Write-Host "`nA DHCP range example could be:" -ForegroundColor Cyan
+				Write-Host "Lan: $LanInt1rng16[0].[1] - $LanInt1rng16[255].[253]" -ForegroundColor Cyan
+				Write-Host "Fortigate unit: $LanInt1gw" -ForegroundColor Cyan
+				Write-Host "`nOr leave some space for some static addresses and start your range a bit further."
+				Write-Host "`nDHCP range Example 2:" -ForegroundColor Cyan
+				Write-Host "Lan: $LanInt1rng16[1].[1] - $LanInt1rng16[254].[253]" -ForegroundColor Cyan
+				Write-Host "Fortigate Unit: $LanInt1gw`n`n" -ForegroundColor Cyan
 
-            $siprange = Read-Host -Prompt "Supply a start digit for your range. `nJust type the starting digits, not the whole range ($LanInt1rng16[X].[X])"
-            $eiprange = Read-Host -Prompt "`nSupply an end digit for your range. `nJust type the ending digits, not the whole range ($LanInt1rng16[X].[X])"
-    
-            $newsiprange = $LanInt1rng16
-            $newsiprange += $siprange
+				$siprange = Read-Host -Prompt "Supply a start digit for your range. `nJust type the starting digits, not the whole range ($LanInt1rng16[X].[X])"
+				$eiprange = Read-Host -Prompt "`nSupply an end digit for your range. `nJust type the ending digits, not the whole range ($LanInt1rng16[X].[X])"
+		
+				$newsiprange = $LanInt1rng16
+				$newsiprange += $siprange
 
-            $neweiprange = $LanInt1rng16
-            $neweiprange += $eiprange
-        }
-        elseif($lanInt1Sub -eq '255.0.0.0')
-        {
-            Write-Host "`n`nOk, We need some more information."
-            Write-Host "Do keep in mind the subnet supplied before ($LanInt1Sub)."
-            Write-Host "`nA DHCP range example could be:" -ForegroundColor Cyan
-            Write-Host "Lan: $LanInt1rng8[0].[0].[1] - $LanInt1rng8[255].[255].[254]" -ForegroundColor Cyan
-            Write-Host "Fortigate unit: $LanInt1gw" -ForegroundColor Cyan
-            Write-Host "`nOr leave some space for some static addresses and start your range a bit further."
-            Write-Host "`nDHCP range Example 2:" -ForegroundColor Cyan
-            Write-Host "Lan: $LanInt1rng8[1].[0].[1] - $LanInt1rng8[1].[255].[254]" -ForegroundColor Cyan
-            Write-Host "Fortigate Unit: $LanInt1gw`n`n" -ForegroundColor Cyan
+				$neweiprange = $LanInt1rng16
+				$neweiprange += $eiprange
+			}
+			elseif($lanInt1Sub -eq '255.0.0.0')
+			{
+				Write-Host "`n`nOk, We need some more information."
+				Write-Host "Do keep in mind the subnet supplied before ($LanInt1Sub)."
+				Write-Host "`nA DHCP range example could be:" -ForegroundColor Cyan
+				Write-Host "Lan: $LanInt1rng8[0].[0].[1] - $LanInt1rng8[255].[255].[254]" -ForegroundColor Cyan
+				Write-Host "Fortigate unit: $LanInt1gw" -ForegroundColor Cyan
+				Write-Host "`nOr leave some space for some static addresses and start your range a bit further."
+				Write-Host "`nDHCP range Example 2:" -ForegroundColor Cyan
+				Write-Host "Lan: $LanInt1rng8[1].[0].[1] - $LanInt1rng8[1].[255].[254]" -ForegroundColor Cyan
+				Write-Host "Fortigate Unit: $LanInt1gw`n`n" -ForegroundColor Cyan
 
-            $siprange = Read-Host -Prompt "Supply a start digit for your range. `nJust type the starting digits, not the whole range ($LanInt1rng8[X].[X].[X])"
-            $eiprange = Read-Host -Prompt "`nSupply an end digit for your range. `nJust type the ending digits, not the whole range ($LanInt1rng8[X].[X].[X])"
-    
-            $newsiprange = $LanInt1rng8
-            $newsiprange += $siprange
+				$siprange = Read-Host -Prompt "Supply a start digit for your range. `nJust type the starting digits, not the whole range ($LanInt1rng8[X].[X].[X])"
+				$eiprange = Read-Host -Prompt "`nSupply an end digit for your range. `nJust type the ending digits, not the whole range ($LanInt1rng8[X].[X].[X])"
+		
+				$newsiprange = $LanInt1rng8
+				$newsiprange += $siprange
 
-            $neweiprange = $LanInt1rng8
-            $neweiprange += $eiprange
-        }
-        else
-        {
-            Write-Host "`n`nOk, We need some more information."
-            Write-Host "Do keep in mind the subnet supplied before ($LanInt1Sub)."
-            Write-Host "`nSince you went with a custom subnet, I figure you know what you are doing!"
-            Write-Host "An example, FGT Unit 192.168.14.1, 192.168.14.2-192.168.14.14 as DHCP for a 255.255.255.240`n`n"
-            Write-Host "Fortigate Unit: $LanInt1gw`n`n" -ForegroundColor Cyan
+				$neweiprange = $LanInt1rng8
+				$neweiprange += $eiprange
+			}
+			else
+			{
+				Write-Host "`n`nOk, We need some more information."
+				Write-Host "Do keep in mind the subnet supplied before ($LanInt1Sub)."
+				Write-Host "`nSince you went with a custom subnet, I figure you know what you are doing!"
+				Write-Host "An example, FGT Unit 192.168.14.1, 192.168.14.2-192.168.14.14 as DHCP for a 255.255.255.240`n`n"
+				Write-Host "Fortigate Unit: $LanInt1gw`n`n" -ForegroundColor Cyan
 
-            $siprange = Read-Host -Prompt "Supply a starting range for your DHCP range.  ($LanInt1rng0[X].[X].[X].[X])"
-            $eiprange = Read-Host -Prompt "`nSupply an ending range for your DHCP range. ($LanInt1rng0[X].[X].[X].[X])"
-    
-            $newsiprange = $LanInt1rng0
-            $newsiprange += $siprange
+				$siprange = Read-Host -Prompt "Supply a starting range for your DHCP range.  ($LanInt1rng0[X].[X].[X].[X])"
+				$eiprange = Read-Host -Prompt "`nSupply an ending range for your DHCP range. ($LanInt1rng0[X].[X].[X].[X])"
+		
+				$newsiprange = $LanInt1rng0
+				$newsiprange += $siprange
 
-            $neweiprange = $LanInt1rng0
-            $neweiprange += $eiprange
-        }
+				$neweiprange = $LanInt1rng0
+				$neweiprange += $eiprange
+			}
 
             #Just double checking and sending info to end user
             Write-Host "`nYou have chosen for:" -ForegroundColor Yellow
@@ -201,7 +201,7 @@ function Set-FGTLan
     Write-Host "`n*** Set data for $srcintf ***`n" -ForegroundColor Green
 
     #Set local DHCP configuration
-    if([string]::IsNullOrEmpty($siprange))
+    if(($LanInt1Dhcp -eq "N") -or ($LanInt1Dhcp -eq "n"))
     {
         Write-Host "No DHCP will be activated."
         $SSH1.WriteLine("config system dhcp server")
@@ -248,7 +248,7 @@ function Set-FGTLan
 
     # Disconnect happens here
     $SSH1.WriteLine("config system interface")
-    Start-Sleep -Milliseconds 70
+	Start-Sleep -Milliseconds 70
     $SSH1.WriteLine("edit $srcintf")
     Start-Sleep -Milliseconds 70
     $SSH1.WriteLine("set ip $LanInt1gw $LanInt1Sub")

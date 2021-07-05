@@ -23,7 +23,7 @@ function Set-FGTWan
     Write-Host ""
     Write-Host "*** Get data for WAN ***`n" -ForegroundColor Green
 
-    $whatwan = Read-Host -Prompt "What interface is your WAN interface (Default WAN; possible WAN1, WAN2, DMZ)"
+    $whatwan = Read-Host -Prompt "What interface is your WAN interface (Possible: WAN, WAN1, WAN2, DMZ)"
     
 
     if([string]::IsNullOrEmpty($whatwan))
@@ -35,6 +35,23 @@ function Set-FGTWan
 
     switch ($whatwan)
     {
+		wan
+        {
+            $WanInt = Read-Host -prompt "Do you want DHCP on WAN (y/n)"
+
+            if (($WanInt -eq "y") -or ($WanInt -eq "yes"))
+            {
+                Write-Host "We will configure DHCP on the WAN interface"
+            }
+            else
+            {
+                Write-Host "You want a static address, let met get some more information."
+                Write-Host "`nKeep in mind to choose a different subnet compared to your Lan!"
+                $WanIntIP = Read-Host -Prompt "Enter WAN IP address (a.b.c.d)"
+                $WanIntSub = Read-Host -Prompt "Subnet of the WAN"
+                $WanIntGW = Read-Host -Prompt "Default Gateway for Wan"
+            }
+        }
         wan1
         {
             $WanInt1 = Read-Host -prompt "Do you want DHCP on WAN1 (y/n)"
@@ -88,7 +105,7 @@ function Set-FGTWan
         }
         default
         {
-            Write-Host "`nI'm defaulting to WAN."
+            Write-Host "`nI'm defaulting to WAN. Feature in progress (for different lan ports)"
             $whatwan = 'WAN'
             $WanInt1 = Read-Host -prompt "Do you want DHCP on WAN (y/n/exit)"
 
@@ -124,6 +141,62 @@ function Set-FGTWan
     
     switch($whatwan)
     {
+		WAN
+        {
+            Start-Sleep -Milliseconds 70
+            $SSH1.WriteLine("get hardware nic wan")
+            Start-Sleep -Milliseconds 250
+            $wanMacOut = $SSH1.Read()
+            Start-Sleep -Milliseconds 70
+            Write-Warning "Your MAC address information, in case you need it:`n"
+            Write-Host $wanMacOut
+
+            if([string]::IsNullOrEmpty($WanIntIP))
+            {
+                #They opted for DHCP on WAN1 interface
+                $SSH1.WriteLine("config system interface")
+                Start-Sleep -Milliseconds 70
+                $SSH1.WriteLine("edit wan")
+                Start-Sleep -Milliseconds 70
+                $SSH1.WriteLine("set mode dhcp")
+				Start-Sleep -Milliseconds 70
+                $SSH1.WriteLine("set allowaccess ping https http fgfm auto-ipsec")
+                Start-Sleep -Milliseconds 70
+                $SSH1.WriteLine("end")
+                Start-Sleep -Milliseconds 70
+            }
+            else
+            {
+                $SSH1.WriteLine("config system interface")
+                Start-Sleep -Milliseconds 70
+                $SSH1.WriteLine("edit wan")
+                Start-Sleep -Milliseconds 70
+                $SSH1.WriteLine("set mode static")
+                Start-Sleep -Milliseconds 70
+                $SSH1.WriteLine("set ip $WanIntIP $WanIntSub")
+                Start-Sleep -Milliseconds 70
+                $SSH1.WriteLine("set allowaccess ping https http fgfm auto-ipsec")
+                Start-Sleep -Milliseconds 70
+                $SSH1.WriteLine("set alias 'Internet'")
+                Start-Sleep -Milliseconds 70
+                $SSH1.WriteLine("end")
+                Start-Sleep -Milliseconds 70
+                
+                #Wan set, routing to the outside needed
+                $SSH1.WriteLine("config router static")
+                Start-Sleep -Milliseconds 70
+                $SSH1.WriteLine("edit 1")
+                Start-Sleep -Milliseconds 60
+                $SSH1.WriteLine("set gateway $WanIntGW")
+                Start-Sleep -Milliseconds 70
+                $SSH1.WriteLine("set device 'wan'")
+                Start-Sleep -Milliseconds 60
+                $SSH1.WriteLine("end")
+                Start-Sleep -Milliseconds 60
+            }
+            Write-Host "`nAll done configuring your interface`n"
+            pause 
+        }
         WAN1
         {
             Start-Sleep -Milliseconds 70
@@ -142,6 +215,8 @@ function Set-FGTWan
                 $SSH1.WriteLine("edit wan1")
                 Start-Sleep -Milliseconds 70
                 $SSH1.WriteLine("set mode dhcp")
+				Start-Sleep -Milliseconds 70
+                $SSH1.WriteLine("set allowaccess ping https http fgfm auto-ipsec")
                 Start-Sleep -Milliseconds 70
                 $SSH1.WriteLine("end")
                 Start-Sleep -Milliseconds 70
@@ -197,6 +272,8 @@ function Set-FGTWan
                 $SSH1.WriteLine("edit wan2")
                 Start-Sleep -Milliseconds 70
                 $SSH1.WriteLine("set mode dhcp")
+				Start-Sleep -Milliseconds 70
+                $SSH1.WriteLine("set allowaccess ping https http fgfm auto-ipsec")
                 Start-Sleep -Milliseconds 70
                 $SSH1.WriteLine("end")
                 Start-Sleep -Milliseconds 60
@@ -250,6 +327,8 @@ function Set-FGTWan
                 $SSH1.WriteLine("config system interface")
                 Start-Sleep -Milliseconds 70
                 $SSH1.WriteLine("edit dmz")
+                Start-Sleep -Milliseconds 70
+                $SSH1.WriteLine("set allowaccess ping https http fgfm auto-ipsec")
                 Start-Sleep -Milliseconds 70
                 $SSH1.WriteLine("set mode dhcp")
                 Start-Sleep -Milliseconds 70
