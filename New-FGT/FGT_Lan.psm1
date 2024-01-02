@@ -180,7 +180,7 @@ function Set-FGTLan
     $SSH1.WriteLine("show")
     Start-SLeep -Milliseconds 500
     $readinterfaces = $SSH1.Read()
-    if($readinterfaces -like "*Lan*")
+    if($readinterfaces -like "*lan*")
     {
         $srcintf = "lan"
         $SSH1.WriteLine("end")
@@ -256,6 +256,9 @@ function Set-FGTLan
     $SSH1.WriteLine("set device-identification enable")
     Start-Sleep -Milliseconds 100
     $SSH1.WriteLine("end")
+    Start-Sleep -Milliseconds 50
+    $SSH1.WriteLine("y")
+    Start-Sleep -Milliseconds 50
     #manuel cleanup, so we can restart session
     remove-Module FGT_* -ErrorAction SilentlyContinue
     Start-Sleep -Seconds 2
